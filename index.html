@@ -12,42 +12,22 @@
 
 <body>
     <!-- header -->
-    <header>
-        <div class="text-center">
-            <h1 class="my-3">AI Universe Hub</h1>
+    <header class="my-3">
+        <div class="text-center" >
+            <h1 class="">AI Universe Hub</h1>
             <button type="button" class="btn btn-danger fw-bold py-2">Sort By Date</button>
         </div>
     </header>
     <!-- header -->
     <!-- main -->
-    <main class="container mx-auto">
-        <section class="row row-cols-3" id="cards">
-            <div class="">
-                <div class="card mx-auto" style="width: 20rem;">
-                    <img class="m-3 rounded"
-                        src="https://img.olhardigital.com.br/wp-content/uploads/2023/01/chatgpt_assistente.jpg" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title">Features</h5>
-                        <div class="">
-                            <ol class="text-muted">
-                                <li>Natural language processing</li>
-                                <li>Contextual understanding</li>
-                                <li>Text generation</li>
-                            </ol>
-                            <hr>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="">
-                                    <h5>ChatGPT</h5>
-                                    <p class="mb-0 text-muted"><i class="bi bi-calendar3"></i> 11/01/2022</p>
-                                </div>
-                                <button class="rounded-circle bg-danger-subtle border-0" style="height: 45px; width: 45px;"><i class="bi bi-arrow-right fw-bold text-danger"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+    <main class="container mx-auto my-2">
+        <section class="row row-cols-1 row-cols-md-3 g-2" id="cards">
+            <!-- single card -->
+            
         </section>
+        <div id="show-all" class="my-2 text-center d-none">
+            <button id="btn-show-all" type="button" class="btn btn-danger fw-bold py-2">Sort By Date</button>
+        </div>
     </main>
     <!-- main -->
     <script src="./bootstrap/bootstrap.min.js"></script>
