@@ -1,0 +1,22 @@
+.font-size-small{
+    font-size: 10px;
+}
+.floting-btn{
+    background-color: rgb(201, 77, 77);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    color: white;
+}
+.modal-container{
+    position: relative;
+    padding-top: 20px;
+}

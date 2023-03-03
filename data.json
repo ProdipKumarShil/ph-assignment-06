@@ -1,0 +1,18 @@
+features": {
+    "1": {
+    "feature_name": "Computer vision",
+    "description": "Facebook AI includes tools for image and video analysis, object detection and recognition, and facial recognition."
+    },
+    "2": {
+    "feature_name": "Natural language processing",
+    "description": "Facebook AI includes tools for natural language processing, including sentiment analysis, language translation, and text classification."
+    },
+    "3": {
+    "feature_name": "Deep learning",
+    "description": "Facebook AI uses deep learning techniques to train neural networks and develop models for a variety of AI applications."
+    },
+    "4": {
+    "feature_name": "Machine learning",
+    "description": "Facebook AI includes tools for machine learning, including algorithms for predictive modeling, clustering, and anomaly detection."
+    }
+    }
