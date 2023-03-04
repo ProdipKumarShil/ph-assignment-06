@@ -10,6 +10,15 @@ const showData = (allData) => {
     const cardsContainer = document.getElementById('cards')
     
     allData.forEach((data) => {
+        // adding spinner
+        const spinnerContainer = document.getElementById('spinner')
+        if(data.length){
+            spinnerContainer.classList.remove('d-none')
+        }
+        else{
+            spinnerContainer.classList.add('d-none')
+        }
+
         const div = document.createElement('div');
         const {name, id, image, features, published_in} = data;
         div.innerHTML = `
