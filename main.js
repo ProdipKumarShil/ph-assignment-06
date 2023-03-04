@@ -1,27 +1,91 @@
-const loadAllData = (items) =>{
+const loadAllData = (items) => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     fetch(url)
         .then(res => res.json())
         .then(data => showData((data.data.tools).slice(0, items)))
 }
+function sorting(data) {
 
-// showing all data in a cards
-const showData = (allData) => {
+    data.sort(function (a, b) {
+        if ((new Date(a.published_in)) < (new Date(b.published_in))
+        ) return -1
+    })
+    console.log(data)
+
     const cardsContainer = document.getElementById('cards')
     cardsContainer.innerHTML = ''
-    
-    allData.forEach((data) => {
+
+    data.forEach((data) => {
         // adding spinner
         const spinnerContainer = document.getElementById('spinner')
-        if(data.length){
+        if (data.length) {
             spinnerContainer.classList.remove('d-none')
         }
-        else{
+        else {
             spinnerContainer.classList.add('d-none')
         }
 
         const div = document.createElement('div');
-        const {name, id, image, features, published_in} = data;
+        const { name, id, image, features, published_in } = data;
+        div.innerHTML = `
+        <div class=" card mx-auto w-full h-100" >
+            <img class="m-3 rounded"
+                src="${image}" alt="" style="height: 150px; object-fit: cover;">
+            <div class="card-body">
+                <h5 class="card-title">${name}</h5>
+                <div class="">
+                    <ol id="list" class="text-muted">
+                    ${listItems(features)}
+                    </ol>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="">
+                            <h5>${name}</h5>
+                            <p class="mb-0 text-muted"><i class="bi bi-calendar3"></i> ${published_in}</p>
+                        </div>
+                        <button onclick="openModal('${id}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="rounded-circle bg-danger-subtle border-0"
+                            style="height: 45px; width: 45px;"><i
+                                class="bi bi-arrow-right fw-bold text-danger"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `
+        // console.log(features)
+        cardsContainer.appendChild(div)
+    })
+
+}
+// showing all data in a cards
+const showData = (allData) => {
+    // allData.forEach((data) => {
+    //     console.log(data.published_in)
+    // })
+
+    document.getElementById('sort').addEventListener('click', () => {
+        sorting(allData)
+    })
+
+    // allData.sort(function(a, b) {
+    //     if((new Date(a.published_in)) < (new Date(b.published_in))
+    //     ) return -1
+    // })
+
+    const cardsContainer = document.getElementById('cards')
+    cardsContainer.innerHTML = ''
+
+    allData.forEach((data) => {
+        // adding spinner
+        const spinnerContainer = document.getElementById('spinner')
+        if (data.length) {
+            spinnerContainer.classList.remove('d-none')
+        }
+        else {
+            spinnerContainer.classList.add('d-none')
+        }
+
+        const div = document.createElement('div');
+        const { name, id, image, features, published_in } = data;
         div.innerHTML = `
         <div class=" card mx-auto w-full h-100" >
             <img class="m-3 rounded"
@@ -54,7 +118,7 @@ const showData = (allData) => {
 // show list items
 const listItems = lists => {
     let loopList = ''
-    for(let i = 0; i < lists.length; i++){
+    for (let i = 0; i < lists.length; i++) {
         loopList += `<li>${lists[i]}</li>`
     }
     return loopList;
@@ -63,7 +127,7 @@ const listItems = lists => {
 const featureListItems = lists => {
     const itmLength = Object.keys(lists).length
     let loopList = ''
-    for(let i = 1; i <= itmLength; i++){
+    for (let i = 1; i <= itmLength; i++) {
         loopList += `<li>${lists[i].feature_name}</li>`
     }
     return loopList;
@@ -74,11 +138,11 @@ const accuracyFunc = score => {
     const accu = document.getElementById('accuracy')
 
     console.log(accu)
-    if(score){
+    if (score) {
         accu.classList.add('p-1')
         accu.innerText = (score * 100) + '% accuracy'
     }
-    else{
+    else {
         accu.innerText = ''
     }
 }
@@ -93,7 +157,7 @@ const openModal = idNum => {
 
 // show data in modal
 const showDataInModal = data => {
-    const {description} = data
+    const { description } = data
     const card1 = document.getElementById('card-1')
     card1.innerHTML = ''
     card1.innerHTML += `
@@ -125,7 +189,7 @@ const showDataInModal = data => {
                     <div class="">
                         <h5>Integrations</h5>
                         <ul class="font-size-small">
-                            ${data.integrations ? listItems(data.integrations) : ''}
+                            ${data.integrations ? listItems(data.integrations) : 'Warning: no data found'}
                         </ul>
                     </div>
                 </div>
@@ -142,20 +206,20 @@ const showDataInModal = data => {
                 alt="...">
             </div>
             <div class="card-body text-center">
-                <h5>${data.input_output_examples ? data.input_output_examples[0].input : ''}</h5>
-                <p class="card-text">${data.input_output_examples ? data.input_output_examples[0].output : ''}</p>
+                <h5>${data.input_output_examples ? data.input_output_examples[0].input : 'Warning: No data found'}</h5>
+                <p class="card-text">${data.input_output_examples ? data.input_output_examples[0].output : 'Warning: no data found'}</p>
             </div>
         </div>
     </div>
     `
     accuracyFunc(data.accuracy.score)
-    
+
 }
 
-loadAllData(items = 2)
+loadAllData(items = 6)
 
 // show more button 
-document.getElementById('btn-show-all').addEventListener('click', (event)=>{
+document.getElementById('btn-show-all').addEventListener('click', (event) => {
     event.target.style.display = 'none'
     loadAllData()
 })
