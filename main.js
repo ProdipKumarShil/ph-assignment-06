@@ -164,7 +164,7 @@ const showDataInModal = data => {
     <div class="p-4 pt-0 pr-0 ">
         <div class="card bg-danger-subtle border-danger h-100">
             <div class="card-body">
-                <h5 class="card-title">${description}</h5>
+                <h5 class="card-title text-justify ">${description}</h5>
                 <div class="row row-cols-2 row-cols-md-3 text-center justify-content-center g-2">
                     <div class=" ">
                         <p class="text-center fw-semibold bg-light p-2 rounded m-0 text-success">
