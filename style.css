@@ -20,3 +20,8 @@
     position: relative;
     padding-top: 20px;
 }
+.accuracy-content{
+    font-size: 12px;
+    right: 20px;
+    top: 20px;
+}

@@ -58,6 +58,20 @@ const featureListItems = lists => {
     }
     return loopList;
 }
+// ${accuracyFunc(data.accuracy.score)}
+// accuracy function
+const accuracyFunc = score => {
+    const accu = document.getElementById('accuracy')
+
+    console.log(accu)
+    if(score){
+        accu.classList.add('p-1')
+        accu.innerText = (score * 100) + '% accuracy'
+    }
+    else{
+        accu.innerText = ''
+    }
+}
 
 // open modal
 const openModal = idNum => {
@@ -111,19 +125,20 @@ const showDataInModal = data => {
 
     <div class="p-4 pt-0 pl-0">
         <div class="card h-100">
-            <img class="img-fluid p-3 rounded"
+            <div class="position-relative">
+            <p id="accuracy" class="accuracy-content fw-bold  rounded bg-danger text-light position-absolute"></p>
+                <img class="img-fluid p-3 rounded"0
                 src="${data.image_link[0]}"
                 alt="...">
+            </div>
             <div class="card-body text-center">
-                <h5>Hi, how are you doing today?</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up
-                    the bulk of the card's content.</p>
+                <h5>${data.input_output_examples ? data.input_output_examples[0].input : ''}</h5>
+                <p class="card-text">${data.input_output_examples ? data.input_output_examples[0].output : ''}</p>
             </div>
         </div>
     </div>
     `
-    // console.log(Object.keys(data.features).length)
-    // console.log(data.features[1].feature_name)
+    accuracyFunc(data.accuracy.score)
     
 }
 
