@@ -1,13 +1,14 @@
-const loadAllData = () =>{
+const loadAllData = (items) =>{
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     fetch(url)
         .then(res => res.json())
-        .then(data => showData(data.data.tools))
+        .then(data => showData((data.data.tools).slice(0, items)))
 }
 
 // showing all data in a cards
 const showData = (allData) => {
     const cardsContainer = document.getElementById('cards')
+    cardsContainer.innerHTML = ''
     
     allData.forEach((data) => {
         // adding spinner
@@ -58,7 +59,7 @@ const listItems = lists => {
     }
     return loopList;
 }
-// show list items
+// show featureList items
 const featureListItems = lists => {
     const itmLength = Object.keys(lists).length
     let loopList = ''
@@ -151,4 +152,10 @@ const showDataInModal = data => {
     
 }
 
-loadAllData()
+loadAllData(items = 2)
+
+// show more button 
+document.getElementById('btn-show-all').addEventListener('click', (event)=>{
+    event.target.style.display = 'none'
+    loadAllData()
+})
